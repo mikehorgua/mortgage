@@ -129,11 +129,11 @@ If ($page=='calcresult') {
               <div onclick="myFunction()" class="dropbtn">Choose bank</div>
               <div id="myDropdown" class="dropdown-content">
                 <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                <a onclick="document.getElementById(\'myText\').value = \'1\';">First</a>
-                <a onclick="document.getElementById(\'myText\').value = \'1\';">First</a>
-                <a onclick="document.getElementById(\'myText\').value = \'1\';">First</a>
-                <a onclick="document.getElementById(\'myText\').value = \'1\';">First</a>
-                <a onclick="document.getElementById(\'myText\').value = \'1\';">First</a>
+                <a onclick="document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
+                <a onclick="document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
+                <a onclick="document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
+                <a onclick="document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
+                <a onclick="document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
               </div>
             </div>
       </div>
