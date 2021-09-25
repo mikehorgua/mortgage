@@ -120,11 +120,16 @@ If ($page=='calcresult') {
     $db_password = "975864";
     $db_name = "mikehorg_mortgage";
     $link = mysqli_connect($db_location, $db_user, $db_password, $db_name);
+    if (mysqli_connect_errno()) {
+        printf("Connect failed: %s\n", mysqli_connect_error());
+        exit();
+    }
     $query = "SELECT * FROM `banks`";
     if ($result = mysqli_query($link, $query)) {
         /* fetch associative array */
         while ($row = mysqli_fetch_row($result)) {
-            printf ("%s (%s)\n", $row[0], $row[1]);
+            $bankslist .= '<a onclick="document.getElementById(\'searchbuttonname\').innerHtml=\''.$row[bankname].'\';document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \''.$row[nom].'\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">'.$row[bankname].'</a>';
+
         }
         /* free result set */
         mysqli_free_result($result);
