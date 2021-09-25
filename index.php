@@ -120,16 +120,18 @@ If ($page=='calcresult') {
     $db_password = "Q84zgsRGWM";
     $db_name = "sql11440061";
     $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
+    /*
     echo mysqli_get_host_info($link);
     if (mysqli_connect_errno()) {
         printf("Connect failed: %s\n", mysqli_connect_error());
         exit();
     }
+    */
     $query = "SELECT * FROM `banks`;";
     if ($result = mysqli_query($link, $query)) {
         /* fetch associative array */
         while ($row = mysqli_fetch_row($result)) {
-            $bankslist .= '<a onclick="document.getElementById(\'searchbuttonname\').innerHtml=\''.$row['bankname'].'\';document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \''.$row['nom'].'\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">'.$row['bankname'].'</a>';
+            $bankslist .= '<a onclick="document.getElementById(\'searchbuttonname\').innerHtml=\''.$row[1].'\';document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \''.$row[0].'\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">'.$row[1].'</a>';
 
         }
         /* free result set */
