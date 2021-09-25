@@ -128,7 +128,7 @@ If ($page=='calcresult') {
     $subtitle = 'Here you should provide your preferred options of mortgage.';
     $bankslist = '';
 
-    $query = "SELECT * FROM banks ORDER by ID;";
+    $query = "SELECT * FROM banks;";
     if ($result = mysqli_query($link, $query)) {
         /* fetch associative array */
         while ($row = mysqli_fetch_row($result)) {
@@ -137,8 +137,8 @@ If ($page=='calcresult') {
         /* free result set */
         mysqli_free_result($result);
     }
-    /* close connection */
-    mysqli_close($link);
+    /* close connection
+    mysqli_close($link);*/
 
     $text = '    <form method="post" action="?page=calcresult" target="_self">
       <div class="w3-section">
