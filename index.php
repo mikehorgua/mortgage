@@ -3,8 +3,8 @@ $db_location = "db.tzk612.nic.ua";
 $db_user = "mikehorg_mortgage";
 $db_password = "975864";
 $db_name = "mikehorg_mortgage";
-$link = mysqli_connect($db_location, $db_user, $db_password, $db_name);
-//$link = new mysqli($db_location, $db_user, $db_password, $db_name);
+//$link = mysqli_connect($db_location, $db_user, $db_password, $db_name);
+$link = new mysqli($db_location, $db_user, $db_password, $db_name);
 
 /* check connection
 if (mysqli_connect_errno()) {
