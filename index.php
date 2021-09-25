@@ -120,7 +120,7 @@ If ($page=='calcresult') {
     $db_password = "975864";
     $db_name = "mikehorg_mortgage";
     $mysqli = new mysqli($db_location, $db_user, $db_password, $db_name);
-    $query = "SELECT * FROM `banks`;";
+    $query = "SELECT * FROM `banks`";
     if ($result = $mysqli->query($query)) {
         /* fetch object array */
         while ($row = $result->fetch_row()) {
