@@ -23,6 +23,8 @@ error_reporting(E_ALL);
 <?php
 if ($_GET["page"]) {
     $page = $_GET["page"];
+} else {
+    $page='';
 }
 
 If ($page=='calc') {
