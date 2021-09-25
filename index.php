@@ -21,7 +21,9 @@ error_reporting(E_ALL);
 <body>
 
 <?php
-$page = $_GET["page"];
+if ($_GET["page"]) {
+    $page = $_GET["page"];
+}
 
 If ($page=='calc') {
     $title = '';
@@ -48,7 +50,7 @@ If ($page=='calc') {
 ?>
 
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-green w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+<nav class="w3-sidebar w3-green w3-collapse w3-top w3-large w3-padding" style="z-index:3; width:300px; font-weight:bold;" id="mySidebar"><br>
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
     <div class="w3-container">
         <h3 class="w3-padding-64"><b>Mortgage <BR> calculator</b></h3>
@@ -93,7 +95,7 @@ If ($page=='calc') {
     </div>
 
     <div class="w3-row-padding">
-        <div class="w3-col m3 w3-margin-bottom">
+        <div style="margin-top:75px" class="w3-col m3 w3-margin-bottom w3-padding-16">
             <ul class="w3-ul w3-light-grey w3-center">
                 <li class="w3-green w3-xlarge w3-padding-32">Basic</li>
                 <li class="w3-padding-16">Floorplanning</li>
@@ -111,7 +113,7 @@ If ($page=='calc') {
             </ul>
         </div>
 
-        <div class="w3-col m3">
+        <div style="margin-top:75px" class="w3-col m3 w3-padding-16">
             <ul class="w3-ul w3-light-grey w3-center">
                 <li class="w3-green w3-xlarge w3-padding-32">Pro</li>
                 <li class="w3-padding-16">Floorplanning</li>
@@ -129,7 +131,7 @@ If ($page=='calc') {
             </ul>
         </div>
 
-        <div class="w3-col m3">
+        <div style="margin-top:75px"  class="w3-col m3 w3-padding-16">
             <ul class="w3-ul w3-light-grey w3-center">
                 <li class="w3-green w3-xlarge w3-padding-32">Pro</li>
                 <li class="w3-padding-16">Floorplanning</li>
@@ -147,7 +149,7 @@ If ($page=='calc') {
             </ul>
         </div>
 
-        <div class="w3-col m3">
+        <div style="margin-top:75px" class="w3-col m3 w3-padding-16">
             <ul class="w3-ul w3-light-grey w3-center">
                 <li class="w3-green w3-xlarge w3-padding-32">Pro</li>
                 <li class="w3-padding-16">Floorplanning</li>
@@ -165,7 +167,7 @@ If ($page=='calc') {
             </ul>
         </div>
 
-        <div class="w3-col m3">
+        <div style="margin-top:75px" class="w3-col m3 w3-padding-16">
             <ul class="w3-ul w3-light-grey w3-center">
                 <li class="w3-green w3-xlarge w3-padding-32">Pro</li>
                 <li class="w3-padding-16">Floorplanning</li>
@@ -183,7 +185,7 @@ If ($page=='calc') {
             </ul>
         </div>
 
-        <div class="w3-col m3">
+        <div style="margin-top:75px" class="w3-col m3 w3-padding-16">
             <ul class="w3-ul w3-light-grey w3-center">
                 <li class="w3-green w3-xlarge w3-padding-32">Pro</li>
                 <li class="w3-padding-16">Floorplanning</li>
@@ -207,7 +209,7 @@ If ($page=='calc') {
 
 <!-- W3.CSS Container -->
 <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px">
-    <p class="w3-right">
+    <p class="w3-left">
         Designed by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a>
     </p>
     <p class="w3-left">
