@@ -113,7 +113,7 @@ If ($page=='calcresult') {
 } elseIf ($page=='calc') {
     $title = 'Enter your data';
     $subtitle = 'Here you should provide your preferred options of mortgage.';
-    $text = '    <form action="?page=calcresult" target="_self">
+    $text = '    <form method="post" action="?page=calcresult" target="_self">
       <div class="w3-section">
         <label>Full amount of money:</label>
         <input class="w3-input w3-border" type="text" name="full" required>
@@ -126,7 +126,7 @@ If ($page=='calcresult') {
         <label>Bank</label>
         <input class="w3-input w3-border" type="text" disabled id="bank" name="Bank" placeholder="Choose your bank below..." required>
             <div class="dropdown">
-              <button onclick="myFunction()" class="dropbtn">Choose bank</button>
+              <div onclick="myFunction()" class="dropbtn">Choose bank</div>
               <div id="myDropdown" class="dropdown-content">
                 <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
                 <a onclick="document.getElementById(\'myText\').value = \'1\';">First</a>
@@ -137,7 +137,7 @@ If ($page=='calcresult') {
               </div>
             </div>
       </div>
-      <button type="submit" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">Calculate now!</button>
+      <button type="submit" class="w3-button w3-block w3-padding-large w3-green w3-margin-bottom">Calculate now!</button>
     </form>  ';
 } elseIf ($page=='banks') {
     $title = 'Bank list management';
