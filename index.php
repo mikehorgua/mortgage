@@ -124,20 +124,20 @@ If ($page=='calcresult') {
       </div>
       <div class="w3-section">
         <label>Bank</label>
-        <input class="w3-input w3-border" type="text" disabled id="bank" name="Bank" placeholder="Choose your bank below..." required>
+        <input class="w3-input w3-border" type="text"  id="bank" name="Bank" placeholder="Choose your bank below..." required>
             <div class="dropdown">
-              <div onclick="myFunction()" class="dropbtn">Choose bank</div>
+              <div onclick="myFunction()" id="searchbuttonname" class="dropbtn">Choose bank</div>
               <div id="myDropdown" class="dropdown-content">
                 <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                <a onclick="document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
-                <a onclick="document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
-                <a onclick="document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
-                <a onclick="document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
-                <a onclick="document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
+                <a onclick="document.getElementById(\'searchbuttonname\').innerHtml(\'First\');document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
+                <a onclick="document.getElementById(\'searchbuttonname\').innerHtml(\'Second\');document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \'2\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">Second</a>
+                <a onclick="document.getElementById(\'searchbuttonname\').innerHtml(\'First\');document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
+                <a onclick="document.getElementById(\'searchbuttonname\').innerHtml(\'First\');document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
+                <a onclick="document.getElementById(\'searchbuttonname\').innerHtml(\'First\');document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
               </div>
             </div>
       </div>
-      <button type="submit" class="w3-button w3-block w3-padding-large w3-green w3-margin-bottom">Calculate now!</button>
+      <button id="submitbutton" disabled type="submit" class="w3-button w3-block w3-padding-large w3-green w3-margin-bottom">Calculate now!</button>
     </form>  ';
 } elseIf ($page=='banks') {
     $title = 'Bank list management';
