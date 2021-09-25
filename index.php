@@ -27,26 +27,57 @@ if ($_GET["page"]) {
     $page='';
 }
 
-If ($page=='calc') {
-    $title = '';
-    $subtitle = '';
+If ($page=='calcresult') {
+    $title = 'Your mortgage plan';
+    $subtitle = '...';
+
+    $amount = $startamount - $down;
+    $monthly = ($amount*($rate/12)*((1+($rate/12))**$mon))/((1+($rate/12))**$mon)-1);
+    $block = '
+        <div class="w3-row-padding">
+            <div style="margin-top:75px" class="w3-col m6 w3-margin-bottom w3-padding-16">
+                <ul class="w3-ul w3-light-grey w3-center">
+                    <li class="w3-green w3-xlarge w3-padding-32">'.$bankname.'</li>
+                    <li class="w3-padding-16">$'.$startamount.'
+                        <span class="w3-opacity">you borrow</span></li>
+                    <li class="w3-padding-16">$'.$down.'
+                        <span class="w3-opacity">your first payment</span></li>
+                    <li class="w3-padding-16">'.$rate.' % 
+                        <span class="w3-opacity">annual rate</span></li>
+                    <li class="w3-padding-16">'.$mon.' 
+                        <span class="w3-opacity">months</span></li>
+                    <li class="w3-padding-16">
+                        <h2>$ '.$monthly.'</h2>
+                        <span class="w3-opacity">per month</span>
+                    </li>
+                    <!--<li class="w3-light-grey w3-padding-24">
+                        <button class="w3-button w3-green w3-padding-large w3-hover-black">Sign Up</button>
+                    </li>-->
+                </ul>
+            </div>
+        </div>   
+    ';
+
+    $text = ''.$block;
+} elseIf ($page=='calc') {
+    $title = 'Enter your data';
+    $subtitle = 'Here you should provide your preferred options of mortgage.';
     $text = '';
 } elseIf ($page=='banks') {
-    $title = '';
-    $subtitle = '';
+    $title = 'Bank list management';
+    $subtitle = 'Add, edit or delete your preferred banks.';
     $text = '';
 } elseIf ($page=='history') {
-    $title = '';
+    $title = 'Customer request history';
     $subtitle = '';
     $text = '';
 } else {
     $title = 'About this project';
     $subtitle = 'How to use this calculator?';
-    $text = '<p>We are a interior design service that focus on what\'s best for your home and what\'s best for you!</p>
-        <p>Some text about our services - what we do and what we offer. We are lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </p>';
+    $text = '
+    <p>We are a interior design service that focus on what\'s best for your home and what\'s best for you!</p>
+    <p>We are a interior design service that focus on what\'s best for your home and what\'s best for you!</p>
+    ';
 }
 
 ?>
@@ -91,120 +122,7 @@ If ($page=='calc') {
 
 
     <!-- Packages / Pricing Tables -->
-    <div class="w3-container" id="packages" style="margin-top:75px">
-        <h1 class="w3-xxxlarge w3-text-green"><b>Packages.</b></h1>
-        <p>Some text our prices. Lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure</p>
-    </div>
 
-    <div class="w3-row-padding">
-        <div style="margin-top:75px" class="w3-col m3 w3-margin-bottom w3-padding-16">
-            <ul class="w3-ul w3-light-grey w3-center">
-                <li class="w3-green w3-xlarge w3-padding-32">Basic</li>
-                <li class="w3-padding-16">Floorplanning</li>
-                <li class="w3-padding-16">10 hours support</li>
-                <li class="w3-padding-16">Photography</li>
-                <li class="w3-padding-16">20% furniture discount</li>
-                <li class="w3-padding-16">Good deals</li>
-                <li class="w3-padding-16">
-                    <h2>$ 199</h2>
-                    <span class="w3-opacity">per room</span>
-                </li>
-                <li class="w3-light-grey w3-padding-24">
-                    <button class="w3-button w3-green w3-padding-large w3-hover-black">Sign Up</button>
-                </li>
-            </ul>
-        </div>
-
-        <div style="margin-top:75px" class="w3-col m3 w3-padding-16">
-            <ul class="w3-ul w3-light-grey w3-center">
-                <li class="w3-green w3-xlarge w3-padding-32">Pro</li>
-                <li class="w3-padding-16">Floorplanning</li>
-                <li class="w3-padding-16">50 hours support</li>
-                <li class="w3-padding-16">Photography</li>
-                <li class="w3-padding-16">50% furniture discount</li>
-                <li class="w3-padding-16">GREAT deals</li>
-                <li class="w3-padding-16">
-                    <h2>$ 249</h2>
-                    <span class="w3-opacity">per room</span>
-                </li>
-                <li class="w3-light-grey w3-padding-24">
-                    <button class="w3-button w3-green w3-padding-large w3-hover-black">Sign Up</button>
-                </li>
-            </ul>
-        </div>
-
-        <div style="margin-top:75px"  class="w3-col m3 w3-padding-16">
-            <ul class="w3-ul w3-light-grey w3-center">
-                <li class="w3-green w3-xlarge w3-padding-32">Pro</li>
-                <li class="w3-padding-16">Floorplanning</li>
-                <li class="w3-padding-16">50 hours support</li>
-                <li class="w3-padding-16">Photography</li>
-                <li class="w3-padding-16">50% furniture discount</li>
-                <li class="w3-padding-16">GREAT deals</li>
-                <li class="w3-padding-16">
-                    <h2>$ 249</h2>
-                    <span class="w3-opacity">per room</span>
-                </li>
-                <li class="w3-light-grey w3-padding-24">
-                    <button class="w3-button w3-green w3-padding-large w3-hover-black">Sign Up</button>
-                </li>
-            </ul>
-        </div>
-
-        <div style="margin-top:75px" class="w3-col m3 w3-padding-16">
-            <ul class="w3-ul w3-light-grey w3-center">
-                <li class="w3-green w3-xlarge w3-padding-32">Pro</li>
-                <li class="w3-padding-16">Floorplanning</li>
-                <li class="w3-padding-16">50 hours support</li>
-                <li class="w3-padding-16">Photography</li>
-                <li class="w3-padding-16">50% furniture discount</li>
-                <li class="w3-padding-16">GREAT deals</li>
-                <li class="w3-padding-16">
-                    <h2>$ 249</h2>
-                    <span class="w3-opacity">per room</span>
-                </li>
-                <li class="w3-light-grey w3-padding-24">
-                    <button class="w3-button w3-green w3-padding-large w3-hover-black">Sign Up</button>
-                </li>
-            </ul>
-        </div>
-
-        <div style="margin-top:75px" class="w3-col m3 w3-padding-16">
-            <ul class="w3-ul w3-light-grey w3-center">
-                <li class="w3-green w3-xlarge w3-padding-32">Pro</li>
-                <li class="w3-padding-16">Floorplanning</li>
-                <li class="w3-padding-16">50 hours support</li>
-                <li class="w3-padding-16">Photography</li>
-                <li class="w3-padding-16">50% furniture discount</li>
-                <li class="w3-padding-16">GREAT deals</li>
-                <li class="w3-padding-16">
-                    <h2>$ 249</h2>
-                    <span class="w3-opacity">per room</span>
-                </li>
-                <li class="w3-light-grey w3-padding-24">
-                    <button class="w3-button w3-green w3-padding-large w3-hover-black">Sign Up</button>
-                </li>
-            </ul>
-        </div>
-
-        <div style="margin-top:75px" class="w3-col m3 w3-padding-16">
-            <ul class="w3-ul w3-light-grey w3-center">
-                <li class="w3-green w3-xlarge w3-padding-32">Pro</li>
-                <li class="w3-padding-16">Floorplanning</li>
-                <li class="w3-padding-16">50 hours support</li>
-                <li class="w3-padding-16">Photography</li>
-                <li class="w3-padding-16">50% furniture discount</li>
-                <li class="w3-padding-16">GREAT deals</li>
-                <li class="w3-padding-16">
-                    <h2>$ 249</h2>
-                    <span class="w3-opacity">per room</span>
-                </li>
-                <li class="w3-light-grey w3-padding-24">
-                    <button class="w3-button w3-green w3-padding-large w3-hover-black">Sign Up</button>
-                </li>
-            </ul>
-        </div>
-    </div>
 
     <!-- End page content -->
 </div>
