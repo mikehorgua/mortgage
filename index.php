@@ -129,7 +129,7 @@ If ($page=='calcresult') {
     if ($result = mysqli_query($link, $query)) {
         /* fetch associative array */
         while ($row = mysqli_fetch_row($result)) {
-            $bankslist .= '<a onclick="document.getElementById(\'searchbuttonname\').innerHtml=\''.$row[bankname].'\';document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \''.$row[nom].'\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">'.$row[bankname].'</a>';
+            $bankslist .= '<a onclick="document.getElementById(\'searchbuttonname\').innerHtml=\''.$row['bankname'].'\';document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \''.$row['nom'].'\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">'.$row['bankname'].'</a>';
 
         }
         /* free result set */
