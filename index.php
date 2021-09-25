@@ -1,10 +1,4 @@
 <?php
-$db_location = "db.tzk612.nic.ua";
-$db_user = "mikehorg_mortgage";
-$db_password = "975864";
-$db_name = "mikehorg_mortgage";
-$mysqli = new mysqli($db_location, $db_user, $db_password, $db_name);
-
 // include('mysql.php');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -121,6 +115,11 @@ If ($page=='calcresult') {
     $subtitle = 'Here you should provide your preferred options of mortgage.';
     $bankslist = '';
 
+    $db_location = "db.tzk612.nic.ua";
+    $db_user = "mikehorg_mortgage";
+    $db_password = "975864";
+    $db_name = "mikehorg_mortgage";
+    $mysqli = new mysqli($db_location, $db_user, $db_password, $db_name);
     $query = "SELECT * FROM `banks`;";
     if ($result = $mysqli->query($query)) {
         /* fetch object array */
