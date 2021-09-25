@@ -3,6 +3,7 @@ include('mysql.php');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+$block = '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,19 +33,19 @@ If ($page=='calcresult') {
     $subtitle = '...';
 
     $amount = $startamount - $down;
-  //  $monthly = ($amount*($rate/12)*((1+($rate/12))**$mon))/(((1+($rate/12))**$mon)-1);
-    $block = '
-        <div class="w3-row-padding">
+    $monthly = ($amount*($rate/12)*((1+($rate/12))**$mon))/(((1+($rate/12))**$mon)-1);
+    $block .= '
+        <div class="w3-row-padding w3-center">
             <div style="margin-top:75px" class="w3-col m6 w3-margin-bottom w3-padding-16">
                 <ul class="w3-ul w3-light-grey w3-center">
                     <li class="w3-green w3-xlarge w3-padding-32">'.$bankname.'</li>
-                    <li class="w3-padding-16">$'.$startamount.'
+                    <li class="w3-padding-16"><h3>$'.$startamount.'</h3>
                         <span class="w3-opacity">you borrow</span></li>
-                    <li class="w3-padding-16">$'.$down.'
+                    <li class="w3-padding-16"><h3>$'.$down.'</h3>
                         <span class="w3-opacity">your first payment</span></li>
-                    <li class="w3-padding-16">'.$rate.' % 
+                    <li class="w3-padding-16"><h3>'.$rate.' % </h3>
                         <span class="w3-opacity">annual rate</span></li>
-                    <li class="w3-padding-16">'.$mon.' 
+                    <li class="w3-padding-16"><h3>'.$mon.' </h3>
                         <span class="w3-opacity">months</span></li>
                     <li class="w3-padding-16">
                         <h2>$ '.$monthly.'</h2>
@@ -58,7 +59,7 @@ If ($page=='calcresult') {
         </div>   
     ';
 
-    $text = ''.$block;
+    $text = '';
 } elseIf ($page=='calc') {
     $title = 'Enter your data';
     $subtitle = 'Here you should provide your preferred options of mortgage.';
@@ -120,9 +121,9 @@ If ($page=='calcresult') {
         <?php echo $text; ?>
     </div>
 
-
     <!-- Packages / Pricing Tables -->
 
+    <?php echo $block; ?>
 
     <!-- End page content -->
 </div>
