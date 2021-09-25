@@ -1,5 +1,17 @@
 <?php
-include('mysql.php');
+$db_location = "db.tzk612.nic.ua";
+$db_user = "mikehorg_mortgage";
+$db_password = "975864";
+$db_name = "mikehorg_mortgage";
+$link = mysqli_connect($db_location, $db_user, $db_password, $db_name);
+
+/* check connection */
+if (mysqli_connect_errno()) {
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
+}
+
+// include('mysql.php');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -113,6 +125,20 @@ If ($page=='calcresult') {
 } elseIf ($page=='calc') {
     $title = 'Enter your data';
     $subtitle = 'Here you should provide your preferred options of mortgage.';
+    $bankslist = '';
+
+    $query = "SELECT * FROM banks ORDER by ID;";
+    if ($result = mysqli_query($link, $query)) {
+        /* fetch associative array */
+        while ($row = mysqli_fetch_row($result)) {
+            $bankslist .= '<a onclick="document.getElementById(\'searchbuttonname\').innerHTML  = \''.$row['bankname'].'\';document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \''.$row['nom'].'\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">'.$row['bankname'].'</a>';
+        }
+        /* free result set */
+        mysqli_free_result($result);
+    }
+    /* close connection */
+    mysqli_close($link);
+
     $text = '    <form method="post" action="?page=calcresult" target="_self">
       <div class="w3-section">
         <label>Full amount of money:</label>
@@ -125,14 +151,11 @@ If ($page=='calcresult') {
       <div class="w3-section">
         <label>Bank</label>
         <input class="w3-input w3-border" type="hidden"  id="bank" name="Bank" required>
-            <div class="dropdown">
-              <div onclick="myFunction()" id="searchbuttonname" class="dropbtn">Choose bank</div>
+            <div class="w3-input w3-border dropdown">
+              <div onclick="myFunction()" ><span id="searchbuttonname">Choose bank</span></div>
               <div id="myDropdown" class="dropdown-content">
                 <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                <a onclick="document.getElementById(\'searchbuttonname\').innerHtml = \'First\';document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
-                <a onclick="document.getElementById(\'searchbuttonname\').innerHtml=\'Second\';document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \'2\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">Second</a>
-                <a onclick="document.getElementById(\'searchbuttonname\').innerHtml=\'gold\';document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \'3\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">gold</a>
-                <a onclick="document.getElementById(\'searchbuttonname\').innerHtml=\'minor\';document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \'4\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">minor</a>
+                '.$bankslist.'
               </div>
             </div>
       </div>
