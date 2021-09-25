@@ -115,17 +115,17 @@ If ($page=='calcresult') {
     $subtitle = 'Here you should provide your preferred options of mortgage.';
     $bankslist = '';
 
-    $db_location = "db.tzk612.nic.ua";
-    $db_user = "mikehorg_mortgage";
-    $db_password = "975864";
-    $db_name = "mikehorg_mortgage";
+    //$db_location = "db.tzk612.nic.ua";
+    //$db_user = "mikehorg_mortgage";
+    //$db_password = "975864";
+    //$db_name = "mikehorg_mortgage";
     $link = mysqli_connect("db.tzk612.nic.ua", "mikehorg_mortgage", "975864", "mikehorg_mortgage");
     echo mysqli_get_host_info($link);
     if (mysqli_connect_errno()) {
         printf("Connect failed: %s\n", mysqli_connect_error());
         exit();
     }
-    $query = "SELECT * FROM `banks`";
+    $query = "SELECT * FROM `banks`;";
     if ($result = mysqli_query($link, $query)) {
         /* fetch associative array */
         while ($row = mysqli_fetch_row($result)) {
