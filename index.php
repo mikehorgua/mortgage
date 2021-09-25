@@ -119,7 +119,7 @@ If ($page=='calcresult') {
     //$db_user = "mikehorg_mortgage";
     //$db_password = "975864";
     //$db_name = "mikehorg_mortgage";
-    $link = mysqli_connect("db.tzk612.nic.ua", "mikehorg_mortgage", "975864", "mikehorg_mortgage");
+    $link = mysqli_connect("db.tzk612.nic.ua", "mikehorg_mortgage", "975864", "mikehorg_mortgage", 3306);
     echo mysqli_get_host_info($link);
     if (mysqli_connect_errno()) {
         printf("Connect failed: %s\n", mysqli_connect_error());
