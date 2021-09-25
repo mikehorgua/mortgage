@@ -131,9 +131,8 @@ If ($page=='calcresult') {
                 <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
                 <a onclick="document.getElementById(\'searchbuttonname\').innerHtml(\'First\');document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
                 <a onclick="document.getElementById(\'searchbuttonname\').innerHtml(\'Second\');document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \'2\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">Second</a>
-                <a onclick="document.getElementById(\'searchbuttonname\').innerHtml(\'First\');document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
-                <a onclick="document.getElementById(\'searchbuttonname\').innerHtml(\'First\');document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
-                <a onclick="document.getElementById(\'searchbuttonname\').innerHtml(\'First\');document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">First</a>
+                <a onclick="document.getElementById(\'searchbuttonname\').innerHtml(\'gold\');document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">gold</a>
+                <a onclick="document.getElementById(\'searchbuttonname\').innerHtml(\'minor\');document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \'1\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">minor</a>
               </div>
             </div>
       </div>
