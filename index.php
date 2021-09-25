@@ -21,7 +21,7 @@ error_reporting(E_ALL);
 <body>
 
 <?php
-$page = $_GET("page");
+$page = $_GET["page"];
 
 If ($page=='calc') {
     $title = '';
