@@ -113,7 +113,7 @@ If ($page=='calcresult') {
 } elseIf ($page=='calc') {
     $title = 'Enter your data';
     $subtitle = 'Here you should provide your preferred options of mortgage.';
-    $text = '    <form action="?page=calcresult" target="_blank">
+    $text = '    <form action="?page=calcresult" target="_self">
       <div class="w3-section">
         <label>Full amount of money:</label>
         <input class="w3-input w3-border" type="text" name="full" required>
