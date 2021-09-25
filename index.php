@@ -119,15 +119,15 @@ If ($page=='calcresult') {
     $db_user = "mikehorg_mortgage";
     $db_password = "975864";
     $db_name = "mikehorg_mortgage";
-    $mysqli = new mysqli($db_location, $db_user, $db_password, $db_name);
+    $link = mysqli_connect($db_location, $db_user, $db_password, $db_name);
     $query = "SELECT * FROM `banks`";
-    if ($result = $mysqli->query($query)) {
-        /* fetch object array */
-        while ($row = $result->fetch_row()) {
+    if ($result = mysqli_query($link, $query)) {
+        /* fetch associative array */
+        while ($row = mysqli_fetch_row($result)) {
             printf ("%s (%s)\n", $row[0], $row[1]);
         }
         /* free result set */
-        $result->close();
+        mysqli_free_result($result);
     }
 
     $text = '    <form method="post" action="?page=calcresult" target="_self">
