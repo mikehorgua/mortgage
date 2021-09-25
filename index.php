@@ -3,8 +3,8 @@ $db_location = "db.tzk612.nic.ua";
 $db_user = "mikehorg_mortgage";
 $db_password = "975864";
 $db_name = "mikehorg_mortgage";
-//$link = mysqli_connect($db_location, $db_user, $db_password, $db_name);
-$link = new mysqli($db_location, $db_user, $db_password, $db_name);
+$link = mysqli_connect($db_location, $db_user, $db_password, $db_name);
+//$link = new mysqli($db_location, $db_user, $db_password, $db_name);
 
 /* check connection
 if (mysqli_connect_errno()) {
@@ -128,14 +128,14 @@ If ($page=='calcresult') {
     $subtitle = 'Here you should provide your preferred options of mortgage.';
     $bankslist = '';
 
-    $query = "SELECT * FROM banks;";
-    if ($result = mysqli_query($link, $query)) {
+    $query1 = "SELECT * FROM `banks`;";
+    if ($result1 = mysqli_query($link, $query1)) {
         /* fetch associative array */
-        while ($row = mysqli_fetch_row($result)) {
+        while ($row = mysqli_fetch_row($result1)) {
             $bankslist .= '<a onclick="document.getElementById(\'searchbuttonname\').innerHTML  = \''.$row['bankname'].'\';document.getElementById(\'submitbutton\').removeAttribute(\'disabled\');document.getElementById(\'bank\').value = \''.$row['nom'].'\';document.getElementById(\'myDropdown\').classList.toggle(\'show\');">'.$row['bankname'].'</a>';
         }
         /* free result set */
-        mysqli_free_result($result);
+        mysqli_free_result($result1);
     }
     /* close connection
     mysqli_close($link);*/
