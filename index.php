@@ -18,6 +18,56 @@ $block = '';
         body {font-size:16px;}
         .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
         .w3-half img:hover{opacity:1}
+        .dropbtn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropbtn:hover, .dropbtn:focus {
+            background-color: #3e8e41;
+        }
+
+        #myInput {
+            box-sizing: border-box;
+            background-position: 14px 12px;
+            background-repeat: no-repeat;
+            font-size: 16px;
+            padding: 14px 20px 12px 45px;
+            border: none;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #myInput:focus {outline: 3px solid #ddd;}
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f6f6f6;
+            min-width: 230px;
+            overflow: auto;
+            border: 1px solid #ddd;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown a:hover {background-color: #ddd;}
+
+        .show {display: block;}
     </style></head>
 <body>
 
@@ -63,7 +113,32 @@ If ($page=='calcresult') {
 } elseIf ($page=='calc') {
     $title = 'Enter your data';
     $subtitle = 'Here you should provide your preferred options of mortgage.';
-    $text = '';
+    $text = '    <form action="?page=calcresult" target="_blank">
+      <div class="w3-section">
+        <label>Full amount of money:</label>
+        <input class="w3-input w3-border" type="text" name="full" required>
+      </div>
+      <div class="w3-section">
+        <label>Down payment</label>
+        <input class="w3-input w3-border" type="text" name="Down" required>
+      </div>
+      <div class="w3-section">
+        <label>Bank</label>
+        <input class="w3-input w3-border" type="text" disabled id="bank" name="Bank" placeholder="Choose your bank below..." required>
+            <div class="dropdown">
+              <button onclick="myFunction()" class="dropbtn">Choose bank</button>
+              <div id="myDropdown" class="dropdown-content">
+                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                <a onclick="document.getElementById(\'myText\').value = \'1\';">First</a>
+                <a onclick="document.getElementById(\'myText\').value = \'1\';">First</a>
+                <a onclick="document.getElementById(\'myText\').value = \'1\';">First</a>
+                <a onclick="document.getElementById(\'myText\').value = \'1\';">First</a>
+                <a onclick="document.getElementById(\'myText\').value = \'1\';">First</a>
+              </div>
+            </div>
+      </div>
+      <button type="submit" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">Calculate now!</button>
+    </form>  ';
 } elseIf ($page=='banks') {
     $title = 'Bank list management';
     $subtitle = 'Add, edit or delete your preferred banks.';
@@ -155,6 +230,27 @@ If ($page=='calcresult') {
         document.getElementById("modal01").style.display = "block";
         var captionText = document.getElementById("caption");
         captionText.innerHTML = element.alt;
+    }
+    /* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    function filterFunction() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDropdown");
+        a = div.getElementsByTagName("a");
+        for (i = 0; i < a.length; i++) {
+            txtValue = a[i].textContent || a[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                a[i].style.display = "";
+            } else {
+                a[i].style.display = "none";
+            }
+        }
     }
 </script>
 
