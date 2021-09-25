@@ -4,7 +4,7 @@ $db_user = "mikehorg_mortgage";
 $db_password = "975864";
 $db_name = "mikehorg_mortgage";
 
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+//mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 $mysqli = new mysqli($db_location, $db_user, $db_password, $db_name);
 /*
 $db_cnx = @mysql_connect($db_location,$db_user,$db_password);
