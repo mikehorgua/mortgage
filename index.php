@@ -32,7 +32,7 @@ If ($page=='calcresult') {
     $subtitle = '...';
 
     $amount = $startamount - $down;
-    $monthly = ($amount*($rate/12)*((1+($rate/12))**$mon))/((1+($rate/12))**$mon)-1);
+  //  $monthly = ($amount*($rate/12)*((1+($rate/12))**$mon))/(((1+($rate/12))**$mon)-1);
     $block = '
         <div class="w3-row-padding">
             <div style="margin-top:75px" class="w3-col m6 w3-margin-bottom w3-padding-16">
