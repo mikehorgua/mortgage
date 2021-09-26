@@ -185,7 +185,7 @@ elseIf ($page=='calc') {
       </div>-->
       <div class="w3-section">
         <label>Bank</label>
-        <input class="w3-input w3-border" type="hidden"  id="bank" name="Bank" required>
+        <input class="w3-input w3-border" type="hidden"  id="bank" name="bank" required>
             <div class="w3-input w3-border dropdown">
               <div onclick="myFunction()" ><span id="searchbuttonname">Choose bank</span></div>
               <div id="myDropdown" class="dropdown-content">
