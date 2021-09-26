@@ -1,8 +1,8 @@
 <?php
-// include('mysql.php');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+include('dbsettings.php');
 $block = '';
 ?>
 <!DOCTYPE html>
@@ -36,7 +36,7 @@ $block = '';
             background-position: 14px 12px;
             background-repeat: no-repeat;
             font-size: 16px;
-            padding: 14px 20px 12px 45px;
+            padding: 14px 20px 12px 20px;
             border: none;
             border-bottom: 1px solid #ddd;
         }
@@ -110,24 +110,15 @@ If ($page=='calcresult') {
     ';
 
     $text = '';
-} elseIf ($page=='calc') {
+}
+elseIf ($page=='calc') {
     $title = 'Enter your data';
     $subtitle = 'Here you should provide your preferred options of mortgage.';
     $bankslist = '';
 
-    $db_location = "sql11.freemysqlhosting.net";
-    $db_user = "sql11440061";
-    $db_password = "Q84zgsRGWM";
-    $db_name = "sql11440061";
+
     $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
-    /*
-    echo mysqli_get_host_info($link);
-    if (mysqli_connect_errno()) {
-        printf("Connect failed: %s\n", mysqli_connect_error());
-        exit();
-    }
-    */
-    $query = "SELECT * FROM `banks`;";
+    $query = "SELECT * FROM `banks` WHERE visib = 1;";
     if ($result = mysqli_query($link, $query)) {
         /* fetch associative array */
         while ($row = mysqli_fetch_row($result)) {
@@ -160,15 +151,18 @@ If ($page=='calcresult') {
       </div>
       <button id="submitbutton" disabled type="submit" class="w3-button w3-block w3-padding-large w3-green w3-margin-bottom">Calculate now!</button>
     </form>  ';
-} elseIf ($page=='banks') {
+}
+elseIf ($page=='banks') {
     $title = 'Bank list management';
     $subtitle = 'Add, edit or delete your preferred banks.';
     $text = '';
-} elseIf ($page=='history') {
+}
+elseIf ($page=='history') {
     $title = 'Customer request history';
     $subtitle = '';
     $text = '';
-} else {
+}
+else {
     $title = 'About this project';
     $subtitle = 'How to use this calculator?';
     $text = '
