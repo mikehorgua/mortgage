@@ -209,8 +209,8 @@ elseIf ($page=='banks') {
 <div style="" class="w3-col m2 w3-margin-bottom w3-padding-16">Loan term</div>
 <div style="" class="w3-col m3 w3-margin-bottom w3-padding-16">Actions with bank</div>
 </div>';
-    $text .= '<div class="w3-row-padding w3-center w3-light-green">
-<div style="margin-top:75px" class="w3-col m12 w3-margin-bottom w3-padding-16">Active banks list</div>
+    $text .= '<div class="w3-row-padding w3-center w3-grey">
+<div style="" class="w3-col m12 w3-margin-bottom w3-padding-16">Active banks list</div>
 </div>';
 
     $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
@@ -232,7 +232,7 @@ elseIf ($page=='banks') {
             mysqli_free_result($result);
         }
 
-    $text .= '<div class="w3-row-padding w3-center w3-light-green">
+    $text .= '<div class="w3-row-padding w3-center w3-grey">
 <div style="" class="w3-col m12 w3-margin-bottom w3-padding-16">Deleted banks list</div>
 </div>';
 
@@ -248,7 +248,7 @@ elseIf ($page=='banks') {
 <div style="" class="w3-col m2 w3-margin-bottom w3-padding-16 w3-light-grey">$ '.floatval($row[3]).'</div>
 <div style="" class="w3-col m1 w3-margin-bottom w3-padding-16 w3-light-grey">'.floatval($row[4]).' %</div>
 <div style="" class="w3-col m2 w3-margin-bottom w3-padding-16 w3-light-grey">'.floatval($row[5]).' months</div>
-<div style="" class="w3-col m3 w3-margin-bottom w3-padding-16"><a href="?page=br&nom='.$row[0].'">Restore</a></div>
+<div style="" class="w3-col m3 w3-margin-bottom w3-padding-16 w3-light-grey"><a href="?page=br&nom='.$row[0].'">Restore</a></div>
 </div>';
         }
         /* free result set */
