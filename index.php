@@ -308,7 +308,7 @@ elseIf ($page=='historybanks') {
 <div style="" class="w3-col m1 w3-margin-bottom w3-padding-16">'.$row[0].'</div>
 <div style="" class="w3-col m6 w3-margin-bottom w3-padding-16">'.$row[1].'</div>
 <div style="" class="w3-col m5 w3-margin-bottom w3-padding-16"><a href="?page=history&nom='.$row[0].'">Lookup history</a><BR>
-<a target="_blank" href="json.api.php?nom='.$row[0].'&hash="'.$hash.'">JSON API</a></div>
+<a target="_blank" href="json.api.php?nom='.$row[0].'&hash='.$hash.'">JSON API</a></div>
 </div>';
         }
         /* free result set */
