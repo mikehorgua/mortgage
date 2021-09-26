@@ -234,6 +234,9 @@ elseIf ($page=='banks') {
         }
 
     $text .= '<div class="w3-row-padding w3-center ">
+<div style="" class="w3-col m12 w3-margin-bottom w3-light-grey w3-padding-16"><a href="?page=ba">+ Add your bank</a></div>
+</div>';
+    $text .= '<div class="w3-row-padding w3-center ">
 <div style="" class="w3-col m12 w3-margin-bottom w3-grey w3-padding-16">Deleted banks list</div>
 </div>';
 
@@ -423,6 +426,7 @@ elseIf ($page=='br') {
 $nombank = (int)$_GET['nom'];
 $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
 $query = "UPDATE `banks` SET `visib` = '1' WHERE `banks`.`nom` = ".$nombank.";";
+    echo $query;
 $result = mysqli_query($link, $query);
 mysqli_free_result($result);
 }
