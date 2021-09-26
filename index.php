@@ -201,7 +201,7 @@ elseIf ($page=='calc') {
 elseIf ($page=='banks') {
     $title = 'Bank list management';
     $subtitle = 'Add, edit or delete your preferred banks.';
-    $text = '<div class="w3-row-padding w3-center ">
+    $text = '<div class="w3-row-padding w3-center w3-green">
 <div style="" class="w3-col m1 w3-margin-bottom w3-green w3-padding-16">No.</div>
 <div style="" class="w3-col m2 w3-margin-bottom  w3-green w3-padding-16">Bank Name</div>
 <div style="" class="w3-col m1 w3-margin-bottom w3-green  w3-padding-16">Annual Interest Rate</div>
@@ -309,6 +309,122 @@ elseIf ($page=='historybanks') {
         /* free result set */
         mysqli_free_result($result);
     }
+}
+elseIf ($page=='bc') {
+    $title = 'Changing bank';
+    $subtitle = '';
+    $text = '';
+    $nombank = (int)$_GET['nom'];
+    $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
+    $query = "SELECT * FROM `banks` WHERE nom = ".$nombank.";";
+    if ($result = mysqli_query($link, $query)) {
+        /* fetch associative array */
+        while ($row = mysqli_fetch_row($result)) {
+            $text .= '    <form method="post" action="?page=bcr" target="_self">
+      <div class="w3-section">
+        <label>Bank name:</label>
+        <input class="w3-input w3-border" type="text" name="bankname" required autofocus placeholder="Ex.: Silver Spring Bank" value="'.$row[1].'">
+      </div>
+      <div class="w3-section">
+        <label>Interest rate:</label> (in US$)
+        <input class="w3-input w3-border" type="number" min="1" max="999999999.9999" step="0.0001" name="interestrate" required placeholder="Use only numbers and dot. Ex.: 10.1574" value="'.floatval($row[2]).'">
+      </div>
+      <div class="w3-section">
+        <label>Max loan amount:</label> (in US$)
+        <input class="w3-input w3-border" type="number" min="1" max="999999999.99" placeholder="Use only numbers and dot. Ex.: 10000.99" step="0.01" name="maxloan" required value="'.floatval($row[3]).'">
+      </div>
+      <div class="w3-section">
+        <label>Min down percent:</label> (in % )
+        <input class="w3-input w3-border" type="number" min="1" max="999999999.99" placeholder="Use only numbers and dot. Ex.: 5.5" step="0.01" name="mindown" required value="'.floatval($row[4]).'">
+      </div>
+            <div class="w3-section">
+        <label>Loan term:</label> (in months)
+        <input class="w3-input w3-border" type="number" min="1" max="999999999" placeholder="Use only numbers and dot. Ex.: 240" step="1" name="loanterm" required value="'.floatval($row[5]).'">
+        <input  type="hidden"  name="nom"  value="'.$row[0].'">
+      </div>
+      <!--<div class="w3-section">
+        <label>Number of months</label>
+        <input class="w3-input w3-border" type="number" min="1" max="9999" placeholder="Use only numbers. Ex.: 240" step="1" name="mon" required>
+      </div>-->
+      <button id="submitbutton"  type="submit" class="w3-button w3-block w3-padding-large w3-green w3-margin-bottom">Change bank info!</button>
+    </form>  ';
+        }
+        /* free result set */
+        mysqli_free_result($result);
+    }
+}
+elseIf ($page=='ba') {
+    $title = 'Adding bank';
+    $subtitle = '';
+    $text = '';
+
+            $text .= '    <form method="post" action="?page=bar" target="_self">
+      <div class="w3-section">
+        <label>Bank name:</label>
+        <input class="w3-input w3-border" type="text" name="bankname" required autofocus placeholder="Ex.: Silver Spring Bank" >
+      </div>
+      <div class="w3-section">
+        <label>Interest rate:</label> (in US$)
+        <input class="w3-input w3-border" type="number" min="1" max="999999999.9999" step="0.0001" name="interestrate" required placeholder="Use only numbers and dot. Ex.: 10.1574">
+      </div>
+      <div class="w3-section">
+        <label>Max loan amount:</label> (in US$)
+        <input class="w3-input w3-border" type="number" min="1" max="999999999.99" placeholder="Use only numbers and dot. Ex.: 10000.99" step="0.01" name="maxloan" required >
+      </div>
+      <div class="w3-section">
+        <label>Min down percent:</label> (in % )
+        <input class="w3-input w3-border" type="number" min="1" max="999999999.99" placeholder="Use only numbers and dot. Ex.: 5.5" step="0.01" name="mindown" required>
+      </div>
+            <div class="w3-section">
+        <label>Loan term:</label> (in months)
+        <input class="w3-input w3-border" type="number" min="1" max="999999999" placeholder="Use only numbers and dot. Ex.: 240" step="1" name="loanterm" required >
+      </div>
+      <!--<div class="w3-section">
+        <label>Number of months</label>
+        <input class="w3-input w3-border" type="number" min="1" max="9999" placeholder="Use only numbers. Ex.: 240" step="1" name="mon" required>
+      </div>-->
+      <button id="submitbutton"  type="submit" class="w3-button w3-block w3-padding-large w3-green w3-margin-bottom">Add bank info!</button>
+    </form>  ';
+
+}
+elseIf ($page=='bar') {
+    $title = 'Adding bank...';
+    $subtitle = '';
+    $text = 'Wait for redirect...<meta http-equiv="refresh" content="0; url=?page=banks" />';
+$link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
+$query = "INSERT INTO `banks` (`nom`, `bankname`, `interestrate`, `maxloan`, `mindown`, `loanterm`, `visib`) VALUES (NULL, '".$_POST['bankname']."', '".floatval($_POST['interestrate'])."', '".floatval($_POST['maxloan'])."', '".floatval($_POST['mindown'])."', '".(int)$_POST['loanterm']."', '1');";
+$result = mysqli_query($link, mysqli_real_escape_string($link, $query));
+mysqli_free_result($result);
+}
+elseIf ($page=='bcr') {
+    $title = 'Changing bank...';
+    $subtitle = '';
+    $text = 'Wait for redirect...<meta http-equiv="refresh" content="0; url=?page=banks" />';
+$nombank = (int)$_POST['nom'];
+$link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
+$query = "UPDATE `banks` SET `bankname` = '".$_POST['bankname']."', `interestrate` = '".floatval($_POST['interestrate'])."', `maxloan` = '".floatval($_POST['maxloan'])."', `mindown` = '".floatval($_POST['mindown'])."', `loanterm` = '".(int)$_POST['loanterm']."' WHERE `banks`.`nom` = ".$nombank.";";
+$result = mysqli_query($link, mysqli_real_escape_string($link, $query));
+mysqli_free_result($result);
+}
+elseIf ($page=='bd') {
+    $title = 'Deleting bank...';
+    $subtitle = '';
+    $text = 'Wait for redirect...<meta http-equiv="refresh" content="0; url=?page=banks" />';
+$nombank = (int)$_GET['nom'];
+$link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
+$query = "UPDATE `banks` SET `visib` = '0' WHERE `banks`.`nom` = ".$nombank.";";
+$result = mysqli_query($link, $query);
+mysqli_free_result($result);
+}
+elseIf ($page=='br') {
+    $title = 'Restoring bank';
+    $subtitle = '';
+    $text = 'Wait for redirect...<meta http-equiv="refresh" content="0; url=?page=banks" />';
+$nombank = (int)$_GET['nom'];
+$link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
+$query = "UPDATE `banks` SET `visib` = '1' WHERE `banks`.`nom` = ".$nombank.";";
+$result = mysqli_query($link, $query);
+mysqli_free_result($result);
 }
 else {
     $title = 'About this project';
