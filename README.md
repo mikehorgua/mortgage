@@ -1,4 +1,4 @@
-# mortgage
+# mortgage calculator
 ElifTech IT School [Тестове Завдання]
 
 How to configure your instalation?
@@ -10,7 +10,7 @@ How to configure your instalation?
 Using JSON API.
 
 1. Hash check enabled.
-2. Transcription: [[first,second,third,fourth],[...],[...]]
+2. Description of JSON: [[first,second,third,fourth],[...],[...]]
    1. first - unique number in database
    2. second - initial loan
    3. third - down payment
