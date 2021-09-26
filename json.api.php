@@ -3,7 +3,7 @@ $nom = $_GET['nom'];
 $hash =  $_GET['hash'];
 $hashcheck = md5((int)$nom.'morgage-H3rj8fehjh');
 
-if($hash==$hashcheck){
+if($hash===$hashcheck){
     include('dbsettings.php');
 
     $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
