@@ -106,12 +106,12 @@ If ($page=='calcresult') {
         }
 
         if($amount>$maxloan) {
-            $text = '<h1 class="w3-xxxlarge w3-text-red"><b>Error: your loan is bigger than bank offers.</b></h1>';
+            $text = '<h1 class="w3-large w3-text-red"><b>Error: your loan is bigger than bank offers.</b></h1>';
         }
         else
         {
-            if($mindown>($startamount*$down)) {
-                $text = '<h1 class="w3-xxxlarge w3-text-red"><b>Error: your down payment is less than bank require.</b></h1>';
+            if($mindown>($startamount*$down/100)) {
+                $text = '<h1 class="w3-large w3-text-red"><b>Error: your down payment is less than bank require.</b></h1>';
             }
             else
             {
@@ -329,7 +329,7 @@ elseIf ($page=='bc') {
         <input class="w3-input w3-border" type="text" name="bankname" required autofocus placeholder="Ex.: Silver Spring Bank" value="'.$row[1].'">
       </div>
       <div class="w3-section">
-        <label>Interest rate:</label> (in US$)
+        <label>Interest rate:</label> (in % )
         <input class="w3-input w3-border" type="number" min="1" max="999999999.9999" step="0.0001" name="interestrate" required placeholder="Use only numbers and dot. Ex.: 10.1574" value="'.floatval($row[2]).'">
       </div>
       <div class="w3-section">
@@ -367,7 +367,7 @@ elseIf ($page=='ba') {
         <input class="w3-input w3-border" type="text" name="bankname" required autofocus placeholder="Ex.: Silver Spring Bank" >
       </div>
       <div class="w3-section">
-        <label>Interest rate:</label> (in US$)
+        <label>Interest rate:</label> (in % )
         <input class="w3-input w3-border" type="number" min="1" max="999999999.9999" step="0.0001" name="interestrate" required placeholder="Use only numbers and dot. Ex.: 10.1574">
       </div>
       <div class="w3-section">
