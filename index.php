@@ -110,7 +110,7 @@ If ($page=='calcresult') {
         }
         else
         {
-            if($mindown>($startamount*$down/100)) {
+            if($down<($startamount*$mindown/100)) {
                 $text = '<h1 class="w3-large w3-text-red"><b>Error: your down payment is less than bank require.</b></h1>';
             }
             else
@@ -303,10 +303,12 @@ elseIf ($page=='historybanks') {
     if ($result = mysqli_query($link, $query)) {
         /* fetch associative array */
         while ($row = mysqli_fetch_row($result)) {
+            $hash=md5($row[0].'morgage-H3rj8fehjh');
             $text .= '<div class="w3-row-padding w3-center">
 <div style="" class="w3-col m1 w3-margin-bottom w3-padding-16">'.$row[0].'</div>
 <div style="" class="w3-col m6 w3-margin-bottom w3-padding-16">'.$row[1].'</div>
-<div style="" class="w3-col m5 w3-margin-bottom w3-padding-16"><a href="?page=history&nom='.$row[0].'">Lookup history</a></div>
+<div style="" class="w3-col m5 w3-margin-bottom w3-padding-16"><a href="?page=history&nom='.$row[0].'">Lookup history</a><BR>
+<a target="_blank" href="json.api.php?nom='.$row[0].'&hash="'.$hash.'>JSON API</a></div>
 </div>';
         }
         /* free result set */
@@ -429,8 +431,9 @@ else {
     $title = 'About this project';
     $subtitle = 'How to use this calculator?';
     $text = '
-    <p>We are a interior design service that focus on what\'s best for your home and what\'s best for you!</p>
-    <p>We are a interior design service that focus on what\'s best for your home and what\'s best for you!</p>
+    <p>You can calculate the value of a mortgage, knowing only its initial cost and the first payment.</p>
+    <p>If the proposed banks are not enough - you can add your own or edit an existing one.</p>
+    <p>Banks have the ability to view all user calculations, as well as gain remote access to API data (JSON).</p>
     ';
 }
 
