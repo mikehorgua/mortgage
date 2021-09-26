@@ -4,6 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include('dbsettings.php');
 $block = '';
+$text = '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,36 +81,76 @@ if ($_GET["page"]) {
 
 If ($page=='calcresult') {
     $title = 'Your mortgage plan';
-    $subtitle = '...';
+    $subtitle = 'Thanks for using this calculator! Also you can step back and enter other data.';
 
+
+    $startamount = floatval(str_replace(',', '.', str_replace('.', '', $_GET['full'])));
+    $down = floatval(str_replace(',', '.', str_replace('.', '', $_GET['down'])));
+    $bank = (int)$_GET['bank'];
     $amount = $startamount - $down;
-    //$monthly = ($amount*($rate/12)*((1+($rate/12))**$mon))/(((1+($rate/12))**$mon)-1);
-    $block .= '
-        <div class="w3-row-padding w3-center">
-            <div style="margin-top:75px" class="w3-col m6 w3-margin-bottom w3-padding-16">
-                <ul class="w3-ul w3-light-grey w3-center">
-                    <li class="w3-green w3-xlarge w3-padding-32">'.$bankname.'</li>
-                    <li class="w3-padding-16"><h3>$'.$startamount.'</h3>
-                        <span class="w3-opacity">you borrow</span></li>
-                    <li class="w3-padding-16"><h3>$'.$down.'</h3>
-                        <span class="w3-opacity">your first payment</span></li>
-                    <li class="w3-padding-16"><h3>'.$rate.' % </h3>
-                        <span class="w3-opacity">annual rate</span></li>
-                    <li class="w3-padding-16"><h3>'.$mon.' </h3>
-                        <span class="w3-opacity">months</span></li>
-                    <li class="w3-padding-16">
-                        <h2>$ '.$monthly.'</h2>
-                        <span class="w3-opacity">per month</span>
-                    </li>
-                    <!--<li class="w3-light-grey w3-padding-24">
-                        <button class="w3-button w3-green w3-padding-large w3-hover-black">Sign Up</button>
-                    </li>-->
-                </ul>
-            </div>
-        </div>   
-    ';
+    if ($bank != '') {
+        $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
+        $query = "SELECT * FROM `banks` WHERE nom = ".$bank;
+        if ($result = mysqli_query($link, $query)) {
+            /* fetch associative array */
+            while ($row = mysqli_fetch_row($result)) {
+                $bankname = $row[1];
+                $rate = $row[2];
+                $maxloan = $row[3];
+                $mindown = $row[4];
+                $mon = $row[5];
 
-    $text = '';
+            }
+            /* free result set */
+            mysqli_free_result($result);
+        }
+
+        if($amount>$maxloan) {
+            $text = '<h1 class="w3-xxxlarge w3-text-red"><b>Error: your loan is bigger than bank offers.</b></h1>';
+        }
+        else
+        {
+            if($mindown>$down) {
+                $text = '<h1 class="w3-xxxlarge w3-text-red"><b>Error: your down payment is less than bank require.</b></h1>';
+            }
+            else
+            {
+                $monthly = ($amount*($rate/12)*((1+($rate/12))**$mon))/(((1+($rate/12))**$mon)-1);
+                $block .= '
+                        <div class="w3-row-padding w3-center">
+                            <div style="margin-top:75px" class="w3-col m6 w3-margin-bottom w3-padding-16">
+                                <ul class="w3-ul w3-light-grey w3-center">
+                                    <li class="w3-green w3-xlarge w3-padding-32">'.$bankname.'</li>
+                                    <li class="w3-padding-16"><h3>$'.$startamount.'</h3>
+                                        <span class="w3-opacity">you borrow</span></li>
+                                    <li class="w3-padding-16"><h3>$'.$down.'</h3>
+                                        <span class="w3-opacity">your first payment</span></li>
+                                    <li class="w3-padding-16"><h3>'.$rate.' % </h3>
+                                        <span class="w3-opacity">annual rate</span></li>
+                                    <li class="w3-padding-16"><h3>'.$mon.' </h3>
+                                        <span class="w3-opacity">months</span></li>
+                                    <li class="w3-padding-16">
+                                        <h2>$ '.$monthly.'</h2>
+                                        <span class="w3-opacity">per month</span>
+                                    </li>
+                                    <!--<li class="w3-light-grey w3-padding-24">
+                                        <button class="w3-button w3-green w3-padding-large w3-hover-black">Sign Up</button>
+                                    </li>-->
+                                </ul>
+                            </div>
+                        </div>   
+	            	';
+                $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
+                $query = "INSERT INTO `requests` (`nom`, `initialloan`, `downpaym`, `banknom`) VALUES (NULL, '".$startamount."', '".$down."', '".$bank."'); ";
+                mysqli_query($link, $query);
+                mysqli_free_result($result);
+                }
+            }
+
+    } else { $text = '<h1 class="w3-xxxlarge w3-text-red"><b>Error: no bank found.</b></h1>'; }
+
+
+
 }
 elseIf ($page=='calc') {
     $title = 'Enter your data';
@@ -132,12 +173,16 @@ elseIf ($page=='calc') {
     $text = '    <form method="post" action="?page=calcresult" target="_self">
       <div class="w3-section">
         <label>Full amount of money:</label>
-        <input class="w3-input w3-border" type="text" name="full" required>
+        <input class="w3-input w3-border" type="number" min="1" max="999999999.99" step="0.01" name="full" required autofocus placeholder="Use only numbers and dot. Ex.: 200000.50">
       </div>
       <div class="w3-section">
         <label>Down payment</label>
-        <input class="w3-input w3-border" type="text" name="Down" required>
+        <input class="w3-input w3-border" type="number" min="1" max="999999999.99" placeholder="Use only numbers and dot. Ex.: 10000.99" step="0.01" name="down" required>
       </div>
+      <!--<div class="w3-section">
+        <label>Number of months</label>
+        <input class="w3-input w3-border" type="number" min="1" max="9999" placeholder="Use only numbers. Ex.: 240" step="1" name="mon" required>
+      </div>-->
       <div class="w3-section">
         <label>Bank</label>
         <input class="w3-input w3-border" type="hidden"  id="bank" name="Bank" required>
@@ -155,7 +200,60 @@ elseIf ($page=='calc') {
 elseIf ($page=='banks') {
     $title = 'Bank list management';
     $subtitle = 'Add, edit or delete your preferred banks.';
-    $text = '';
+    $text = '<div class="w3-row-padding w3-center w3-green">
+<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16">No.</div>
+<div style="margin-top:75px" class="w3-col m2 w3-margin-bottom w3-padding-16">Bank Name</div>
+<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16">Annual Interest Rate</div>
+<div style="margin-top:75px" class="w3-col m2 w3-margin-bottom w3-padding-16">Max loan amount</div>
+<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16">Min Down amount</div>
+<div style="margin-top:75px" class="w3-col m2 w3-margin-bottom w3-padding-16">Loan term</div>
+<div style="margin-top:75px" class="w3-col m3 w3-margin-bottom w3-padding-16">Actions with bank</div>
+</div>';
+    $text .= '<div class="w3-row-padding w3-center w3-light-green">
+<div style="margin-top:75px" class="w3-col m12 w3-margin-bottom w3-padding-16">Active banks list</div>
+</div>';
+
+    $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
+    $query = "SELECT * FROM `banks` WHERE visib = 1;";
+        if ($result = mysqli_query($link, $query)) {
+            /* fetch associative array */
+            while ($row = mysqli_fetch_row($result)) {
+                $text .= '<div class="w3-row-padding w3-center">
+<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16">'.$row[0].'</div>
+<div style="margin-top:75px" class="w3-col m2 w3-margin-bottom w3-padding-16 ">'.$row[1].'</div>
+<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16">'.$row[2].' %</div>
+<div style="margin-top:75px" class="w3-col m2 w3-margin-bottom w3-padding-16">$ '.$row[3].'</div>
+<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16">'.$row[4].' %</div>
+<div style="margin-top:75px" class="w3-col m2 w3-margin-bottom w3-padding-16">'.$row[5].' months</div>
+<div style="margin-top:75px" class="w3-col m3 w3-margin-bottom w3-padding-16"><a href="?page=bc&nom='.$row[0].'">Change</a> - <a href="?page=bd&nom='.$row[0].'">Delete</a></div>
+</div>';
+                }
+            /* free result set */
+            mysqli_free_result($result);
+        }
+
+    $text .= '<div class="w3-row-padding w3-center w3-light-green">
+<div style="margin-top:75px" class="w3-col m12 w3-margin-bottom w3-padding-16">Deleted banks list</div>
+</div>';
+
+    $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
+    $query = "SELECT * FROM `banks` WHERE visib = 0;";
+    if ($result = mysqli_query($link, $query)) {
+        /* fetch associative array */
+        while ($row = mysqli_fetch_row($result)) {
+            $text .= '<div class="w3-row-padding w3-center">
+<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16 w3-light-grey">'.$row[0].'</div>
+<div style="margin-top:75px" class="w3-col m2 w3-margin-bottom w3-padding-16 w3-light-grey">'.$row[1].'</div>
+<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16 w3-light-grey">'.$row[2].' %</div>
+<div style="margin-top:75px" class="w3-col m2 w3-margin-bottom w3-padding-16 w3-light-grey">$ '.$row[3].'</div>
+<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16 w3-light-grey">'.$row[4].' %</div>
+<div style="margin-top:75px" class="w3-col m2 w3-margin-bottom w3-padding-16 w3-light-grey">'.$row[5].' months</div>
+<div style="margin-top:75px" class="w3-col m3 w3-margin-bottom w3-padding-16"><a href="?page=br&nom='.$row[0].'">Restore</a></div>
+</div>';
+        }
+        /* free result set */
+        mysqli_free_result($result);
+    }
 }
 elseIf ($page=='history') {
     $title = 'Customer request history';
@@ -208,7 +306,7 @@ else {
     <!-- Services -->
     <div class="w3-container" id="services" style="margin-top:75px">
         <h1 class="w3-xxxlarge w3-text-green"><b><?php echo $subtitle; ?></b></h1>
-        <?php echo $text; ?>
+        <p><?php echo $text; ?></p>
     </div>
 
     <!-- Packages / Pricing Tables -->
