@@ -185,6 +185,7 @@ elseIf ($page=='calc') {
       </div>-->
       <div class="w3-section">
         <label>Bank</label>
+        <a href="?page=banks"><i>Don\'t see your bank?</i></a>
         <input class="w3-input w3-border" type="hidden"  id="bank" name="bank" required>
             <div class="w3-input w3-border dropdown">
               <div onclick="myFunction()" ><span id="searchbuttonname">Choose bank</span></div>
@@ -329,7 +330,7 @@ else {
     <div class="w3-bar-block">
         <a href="?page=" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">About</a>
         <a href="?page=calc" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Calculator</a>
-        <a href="?page=banks" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Choose banks</a>
+        <a href="?page=banks" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Manage banks</a>
         <a href="?page=historybanks" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Bank loan history</a>
     </div>
 </nav>
