@@ -84,9 +84,9 @@ If ($page=='calcresult') {
     $subtitle = 'Thanks for using this calculator! Also you can step back and enter other data.';
 
 
-    $startamount = floatval(str_replace(',', '.', str_replace('.', '', $_GET['full'])));
-    $down = floatval(str_replace(',', '.', str_replace('.', '', $_GET['down'])));
-    $bank = (int)$_GET['bank'];
+    $startamount = floatval(str_replace(',', '.', str_replace('.', '', $_POST['full'])));
+    $down = floatval(str_replace(',', '.', str_replace('.', '', $_POST['down'])));
+    $bank = (int)$_POST['bank'];
     $amount = $startamount - $down;
     if ($bank != '') {
         $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
@@ -110,7 +110,7 @@ If ($page=='calcresult') {
         }
         else
         {
-            if($mindown>$down) {
+            if($mindown>($startamount*$down)) {
                 $text = '<h1 class="w3-xxxlarge w3-text-red"><b>Error: your down payment is less than bank require.</b></h1>';
             }
             else
