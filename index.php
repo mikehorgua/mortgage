@@ -200,17 +200,17 @@ elseIf ($page=='calc') {
 elseIf ($page=='banks') {
     $title = 'Bank list management';
     $subtitle = 'Add, edit or delete your preferred banks.';
-    $text = '<div class="w3-row-padding w3-center w3-green">
-<div style="" class="w3-col m1 w3-margin-bottom w3-padding-16">No.</div>
-<div style="" class="w3-col m2 w3-margin-bottom w3-padding-16">Bank Name</div>
-<div style="" class="w3-col m1 w3-margin-bottom w3-padding-16">Annual Interest Rate</div>
-<div style="" class="w3-col m2 w3-margin-bottom w3-padding-16">Max loan amount</div>
-<div style="" class="w3-col m1 w3-margin-bottom w3-padding-16">Min Down amount</div>
-<div style="" class="w3-col m2 w3-margin-bottom w3-padding-16">Loan term</div>
-<div style="" class="w3-col m3 w3-margin-bottom w3-padding-16">Actions with bank</div>
+    $text = '<div class="w3-row-padding w3-center ">
+<div style="" class="w3-col m1 w3-margin-bottom w3-green w3-padding-16">No.</div>
+<div style="" class="w3-col m2 w3-margin-bottom  w3-green w3-padding-16">Bank Name</div>
+<div style="" class="w3-col m1 w3-margin-bottom w3-green  w3-padding-16">Annual Interest Rate</div>
+<div style="" class="w3-col m2 w3-margin-bottom  w3-green w3-padding-16">Max loan amount</div>
+<div style="" class="w3-col m1 w3-margin-bottom w3-green  w3-padding-16">Min Down amount</div>
+<div style="" class="w3-col m2 w3-margin-bottom  w3-green w3-padding-16">Loan term</div>
+<div style="" class="w3-col m3 w3-margin-bottom w3-green  w3-padding-16">Actions with bank</div>
 </div>';
-    $text .= '<div class="w3-row-padding w3-center w3-grey">
-<div style="" class="w3-col m12 w3-margin-bottom w3-padding-16">Active banks list</div>
+    $text .= '<div class="w3-row-padding w3-center ">
+<div style="" class="w3-col m12 w3-margin-bottom w3-grey w3-padding-16">Active banks list</div>
 </div>';
 
     $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
@@ -232,8 +232,8 @@ elseIf ($page=='banks') {
             mysqli_free_result($result);
         }
 
-    $text .= '<div class="w3-row-padding w3-center w3-grey">
-<div style="" class="w3-col m12 w3-margin-bottom w3-padding-16">Deleted banks list</div>
+    $text .= '<div class="w3-row-padding w3-center ">
+<div style="" class="w3-col m12 w3-margin-bottom w3-grey w3-padding-16">Deleted banks list</div>
 </div>';
 
     $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
