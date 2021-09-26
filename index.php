@@ -116,6 +116,7 @@ If ($page=='calcresult') {
             else
             {
                 $monthly = ($amount*($rate/1200)*((1+($rate/1200))**$mon))/(((1+($rate/1200))**$mon)-1);
+                $monthly = round($monthly, 2);
                 $block .= '
                         <div class="w3-row-padding w3-center">
                             <div style="margin-top:75px" class="w3-col m6 w3-margin-bottom w3-padding-16">
