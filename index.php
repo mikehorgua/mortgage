@@ -201,13 +201,13 @@ elseIf ($page=='banks') {
     $title = 'Bank list management';
     $subtitle = 'Add, edit or delete your preferred banks.';
     $text = '<div class="w3-row-padding w3-center w3-green">
-<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16">No.</div>
-<div style="margin-top:75px" class="w3-col m2 w3-margin-bottom w3-padding-16">Bank Name</div>
-<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16">Annual Interest Rate</div>
-<div style="margin-top:75px" class="w3-col m2 w3-margin-bottom w3-padding-16">Max loan amount</div>
-<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16">Min Down amount</div>
-<div style="margin-top:75px" class="w3-col m2 w3-margin-bottom w3-padding-16">Loan term</div>
-<div style="margin-top:75px" class="w3-col m3 w3-margin-bottom w3-padding-16">Actions with bank</div>
+<div style="" class="w3-col m1 w3-margin-bottom w3-padding-16">No.</div>
+<div style="" class="w3-col m2 w3-margin-bottom w3-padding-16">Bank Name</div>
+<div style="" class="w3-col m1 w3-margin-bottom w3-padding-16">Annual Interest Rate</div>
+<div style="" class="w3-col m2 w3-margin-bottom w3-padding-16">Max loan amount</div>
+<div style="" class="w3-col m1 w3-margin-bottom w3-padding-16">Min Down amount</div>
+<div style="" class="w3-col m2 w3-margin-bottom w3-padding-16">Loan term</div>
+<div style="" class="w3-col m3 w3-margin-bottom w3-padding-16">Actions with bank</div>
 </div>';
     $text .= '<div class="w3-row-padding w3-center w3-light-green">
 <div style="margin-top:75px" class="w3-col m12 w3-margin-bottom w3-padding-16">Active banks list</div>
@@ -219,13 +219,13 @@ elseIf ($page=='banks') {
             /* fetch associative array */
             while ($row = mysqli_fetch_row($result)) {
                 $text .= '<div class="w3-row-padding w3-center">
-<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16">'.$row[0].'</div>
-<div style="margin-top:75px" class="w3-col m2 w3-margin-bottom w3-padding-16 ">'.$row[1].'</div>
-<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16">'.floatval($row[2]).' %</div>
-<div style="margin-top:75px" class="w3-col m2 w3-margin-bottom w3-padding-16">$ '.floatval($row[3]).'</div>
-<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16">'.floatval($row[4]).' %</div>
-<div style="margin-top:75px" class="w3-col m2 w3-margin-bottom w3-padding-16">'.floatval($row[5]).' months</div>
-<div style="margin-top:75px" class="w3-col m3 w3-margin-bottom w3-padding-16"><a href="?page=bc&nom='.$row[0].'">Change</a> - <a href="?page=bd&nom='.$row[0].'">Delete</a></div>
+<div style="" class="w3-col m1 w3-margin-bottom w3-padding-16">'.$row[0].'</div>
+<div style="" class="w3-col m2 w3-margin-bottom w3-padding-16 ">'.$row[1].'</div>
+<div style="" class="w3-col m1 w3-margin-bottom w3-padding-16">'.floatval($row[2]).' %</div>
+<div style="" class="w3-col m2 w3-margin-bottom w3-padding-16">$ '.floatval($row[3]).'</div>
+<div style="" class="w3-col m1 w3-margin-bottom w3-padding-16">'.floatval($row[4]).' %</div>
+<div style="" class="w3-col m2 w3-margin-bottom w3-padding-16">'.floatval($row[5]).' months</div>
+<div style="" class="w3-col m3 w3-margin-bottom w3-padding-16"><a href="?page=bc&nom='.$row[0].'">Change</a> - <a href="?page=bd&nom='.$row[0].'">Delete</a></div>
 </div>';
                 }
             /* free result set */
@@ -233,7 +233,7 @@ elseIf ($page=='banks') {
         }
 
     $text .= '<div class="w3-row-padding w3-center w3-light-green">
-<div style="margin-top:75px" class="w3-col m12 w3-margin-bottom w3-padding-16">Deleted banks list</div>
+<div style="" class="w3-col m12 w3-margin-bottom w3-padding-16">Deleted banks list</div>
 </div>';
 
     $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
@@ -242,13 +242,13 @@ elseIf ($page=='banks') {
         /* fetch associative array */
         while ($row = mysqli_fetch_row($result)) {
             $text .= '<div class="w3-row-padding w3-center">
-<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16 w3-light-grey">'.$row[0].'</div>
-<div style="margin-top:75px" class="w3-col m2 w3-margin-bottom w3-padding-16 w3-light-grey">'.$row[1].'</div>
-<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16 w3-light-grey">'.floatval($row[2]).' %</div>
-<div style="margin-top:75px" class="w3-col m2 w3-margin-bottom w3-padding-16 w3-light-grey">$ '.floatval($row[3]).'</div>
-<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16 w3-light-grey">'.floatval($row[4]).' %</div>
-<div style="margin-top:75px" class="w3-col m2 w3-margin-bottom w3-padding-16 w3-light-grey">'.floatval($row[5]).' months</div>
-<div style="margin-top:75px" class="w3-col m3 w3-margin-bottom w3-padding-16"><a href="?page=br&nom='.$row[0].'">Restore</a></div>
+<div style="" class="w3-col m1 w3-margin-bottom w3-padding-16 w3-light-grey">'.$row[0].'</div>
+<div style="" class="w3-col m2 w3-margin-bottom w3-padding-16 w3-light-grey">'.$row[1].'</div>
+<div style="" class="w3-col m1 w3-margin-bottom w3-padding-16 w3-light-grey">'.floatval($row[2]).' %</div>
+<div style="" class="w3-col m2 w3-margin-bottom w3-padding-16 w3-light-grey">$ '.floatval($row[3]).'</div>
+<div style="" class="w3-col m1 w3-margin-bottom w3-padding-16 w3-light-grey">'.floatval($row[4]).' %</div>
+<div style="" class="w3-col m2 w3-margin-bottom w3-padding-16 w3-light-grey">'.floatval($row[5]).' months</div>
+<div style="" class="w3-col m3 w3-margin-bottom w3-padding-16"><a href="?page=br&nom='.$row[0].'">Restore</a></div>
 </div>';
         }
         /* free result set */
@@ -260,9 +260,9 @@ elseIf ($page=='history') {
     $subtitle = '';
     $text = '';
     $text .= '<div class="w3-row-padding w3-center w3-green">
-<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16 ">No.</div>
-<div style="margin-top:75px" class="w3-col m5 w3-margin-bottom w3-padding-16 ">Initial Amount</div>
-<div style="margin-top:75px" class="w3-col m6 w3-margin-bottom w3-padding-16 ">Down payment</div>
+<div style="" class="w3-col m1 w3-margin-bottom w3-padding-16 ">No.</div>
+<div style="" class="w3-col m5 w3-margin-bottom w3-padding-16 ">Initial Amount</div>
+<div style="" class="w3-col m6 w3-margin-bottom w3-padding-16 ">Down payment</div>
 </div>';
     $nombank = int($_GET['nom']);
     $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
@@ -281,9 +281,9 @@ elseIf ($page=='history') {
         /* fetch associative array */
         while ($row = mysqli_fetch_row($result)) {
             $text .= '<div class="w3-row-padding w3-center">
-<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16 w3-light-grey">'.$row[0].'</div>
-<div style="margin-top:75px" class="w3-col m5 w3-margin-bottom w3-padding-16 ">$ '.floatval($row[1]).'</div>
-<div style="margin-top:75px" class="w3-col m6 w3-margin-bottom w3-padding-16 w3-light-grey">$ '.floatval($row[2]).'</div>
+<div style="" class="w3-col m1 w3-margin-bottom w3-padding-16 w3-light-grey">'.$row[0].'</div>
+<div style="" class="w3-col m5 w3-margin-bottom w3-padding-16 ">$ '.floatval($row[1]).'</div>
+<div class="w3-col m6 w3-margin-bottom w3-padding-16 w3-light-grey">$ '.floatval($row[2]).'</div>
 </div>';
         }
         /* free result set */
