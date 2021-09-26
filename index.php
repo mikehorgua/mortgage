@@ -264,7 +264,7 @@ elseIf ($page=='history') {
 <div style="" class="w3-col m5 w3-margin-bottom w3-padding-16 ">Initial Amount</div>
 <div style="" class="w3-col m6 w3-margin-bottom w3-padding-16 ">Down payment</div>
 </div>';
-    $nombank = int($_GET['nom']);
+    $nombank = (int)$_GET['nom'];
     $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
     $query = "SELECT * FROM `banks` WHERE nom = ".$nombank.";";
     if ($result = mysqli_query($link, $query)) {
@@ -300,9 +300,9 @@ elseIf ($page=='historybanks') {
         /* fetch associative array */
         while ($row = mysqli_fetch_row($result)) {
             $text .= '<div class="w3-row-padding w3-center">
-<div style="margin-top:75px" class="w3-col m1 w3-margin-bottom w3-padding-16">'.$row[0].'</div>
-<div style="margin-top:75px" class="w3-col m6 w3-margin-bottom w3-padding-16">'.$row[1].'</div>
-<div style="margin-top:75px" class="w3-col m5 w3-margin-bottom w3-padding-16"><a href="?page=history&nom='.$row[0].'">Lookup history</a></div>
+<div style="" class="w3-col m1 w3-margin-bottom w3-padding-16">'.$row[0].'</div>
+<div style="" class="w3-col m6 w3-margin-bottom w3-padding-16">'.$row[1].'</div>
+<div style="" class="w3-col m5 w3-margin-bottom w3-padding-16"><a href="?page=history&nom='.$row[0].'">Lookup history</a></div>
 </div>';
         }
         /* free result set */
