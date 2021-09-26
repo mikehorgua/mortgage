@@ -396,8 +396,9 @@ elseIf ($page=='bar') {
     $text = 'Wait for redirect...<meta http-equiv="refresh" content="0; url=?page=banks" />';
 $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
 $query = "INSERT INTO `banks` (`nom`, `bankname`, `interestrate`, `maxloan`, `mindown`, `loanterm`, `visib`) VALUES (NULL, '".mysqli_real_escape_string($link, $_POST['bankname'])."', '".floatval($_POST['interestrate'])."', '".floatval($_POST['maxloan'])."', '".floatval($_POST['mindown'])."', '".(int)$_POST['loanterm']."', '1');";
-$result = mysqli_query($link,  $query);
-mysqli_free_result($result);
+    if ($result = mysqli_query($link, $query){
+    mysqli_free_result($result);
+}
 }
 elseIf ($page=='bcr') {
     $title = 'Changing bank...';
@@ -406,8 +407,9 @@ elseIf ($page=='bcr') {
 $nombank = (int)$_POST['nom'];
 $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
 $query = "UPDATE `banks` SET `bankname` = '".mysqli_real_escape_string($link, $_POST['bankname'])."', `interestrate` = '".floatval($_POST['interestrate'])."', `maxloan` = '".floatval($_POST['maxloan'])."', `mindown` = '".floatval($_POST['mindown'])."', `loanterm` = '".(int)$_POST['loanterm']."' WHERE `banks`.`nom` = ".$nombank.";";
-$result = mysqli_query($link, $query);
-mysqli_free_result($result);
+    if ($result = mysqli_query($link, $query){
+    mysqli_free_result($result);
+}
 }
 elseIf ($page=='bd') {
     $title = 'Deleting bank...';
@@ -416,8 +418,9 @@ elseIf ($page=='bd') {
 $nombank = (int)$_GET['nom'];
 $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
 $query = "UPDATE `banks` SET `visib` = '0' WHERE `banks`.`nom` = ".$nombank.";";
-$result = mysqli_query($link, $query);
-mysqli_free_result($result);
+    if ($result = mysqli_query($link, $query){
+    mysqli_free_result($result);
+}
 }
 elseIf ($page=='br') {
     $title = 'Restoring bank';
@@ -427,8 +430,9 @@ $nombank = (int)$_GET['nom'];
 $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
 $query = "UPDATE `banks` SET `visib` = '1' WHERE `banks`.`nom` = ".$nombank.";";
     echo $query;
-$result = mysqli_query($link, $query);
-mysqli_free_result($result);
+    if ($result = mysqli_query($link, $query){
+    mysqli_free_result($result);
+    }
 }
 else {
     $title = 'About this project';
