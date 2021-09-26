@@ -143,7 +143,6 @@ If ($page=='calcresult') {
                 $link = mysqli_connect($db_location, $db_user, $db_password ,  $db_name);
                 $query = "INSERT INTO `requests` (`nom`, `initialloan`, `downpaym`, `banknom`) VALUES (NULL, '".$startamount."', '".$down."', '".$bank."'); ";
                 mysqli_query($link, $query);
-                mysqli_free_result($result);
                 }
             }
 
